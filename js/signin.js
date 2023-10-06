@@ -1,4 +1,4 @@
-let username = document.getElementById("username")
+let username = document.getElementById("username");
 let password = document.getElementById("password")
 let submitBtn = document.getElementById("submitBtn")
 const getUsername = localStorage.getItem("username")
@@ -10,6 +10,7 @@ let errorMessageList = document.querySelector(".errorMessageList");
 let closeErrorBtn = document.querySelector(".closeErrorBtn");
 
 
+// console.log(getEmail, getPassword, getUsername.trim())
 
 
 // function inputLabel () {
@@ -35,10 +36,12 @@ inputFields.forEach((inputField, index) => {
 });
 
 
-console.log(getEmail, getPassword, getUsername)
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault()
-    if (username.value === getUsername || username.value === getEmail ) {
+    let usernameValue = username.value.toLowerCase();
+    // console.log(usernameValue.trim() + "<<>>" +getUsername.toLowerCase().trim() +"<<>>" +getEmail.toLowerCase().trim()  
+    // console.log(usernameValue+"<<>>"+ getUsername.toLowerCase() + "<<>>" +getEmail.toLowerCase())
+    if (usernameValue === getUsername.toLowerCase()|| usernameValue === getEmail.toLowerCase()) {
         if (password.value === getPassword) {
             window.location ="index.html"
         }else {

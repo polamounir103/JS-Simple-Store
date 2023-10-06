@@ -10,9 +10,7 @@ let errorMessageList = document.querySelector(".errorMessageList");
 let closeErrorBtn = document.querySelector(".closeErrorBtn");
 
 function checkEmail(email) {
-
     const emailChrs = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
     return emailChrs.test(email);
 }
 
@@ -21,11 +19,12 @@ submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
     let firstNameValue = firstName.value
     let lastNameValue = lastName.value
-    let usernameValue = username.value
-    let emailValue = email.value
+    let usernameValue = username.value.toLowerCase()
+    let emailValue = email.value.toLowerCase()
     let passwordValue = password.value
     let confirmPasswordValue = confirmPassword.value
     let error = false;
+    // console.log(usernameValue+"<<>>"+ emailValue)
 
     if (firstNameValue === "") {
         error = true;
@@ -78,7 +77,7 @@ submitBtn.addEventListener('click', (e) => {
         if (passwordValue.length < 5 ) {
             error = true;
             errorMessageList.innerHTML += "<li>The Password Must be more than 6 letters</li>";
-            console.log(passwordValue + passwordValue.length);
+            // console.log(passwordValue + passwordValue.length);
         }
     }
 
@@ -96,8 +95,8 @@ submitBtn.addEventListener('click', (e) => {
     if (error === false) {
         localStorage.setItem('firstName', firstNameValue);
         localStorage.setItem('lastName', lastNameValue);
-        localStorage.setItem('username', usernameValue);
-        localStorage.setItem('password', passwordValue);
+        localStorage.setItem('username', usernameValue.toLowerCase());
+        localStorage.setItem('password', passwordValue.toLowerCase() );
         window.location ="signin.html"
     } else {
         errorMessageContainer.style.display = 'flex';

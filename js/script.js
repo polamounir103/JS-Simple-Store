@@ -35,30 +35,21 @@ if(firstName) {
     profileName.innerHTML +=  firstName 
 }
 userImg.addEventListener("click",() => {
-    if (window.width >= 990){
         if(profileNameMenu.style.display !== "flex") {
+            cartMenu.style.display = 'none';
             profileNameMenu.style.display = "flex"
         }else {
             profileNameMenu.style.display = "none"
         }
-    }else {
-        window.location = "cart.html"
-    }
-
 
 })
 
 const logoutBtn = document.getElementById("logoutBtn")
 logoutBtn.addEventListener("click",() => {
-    localStorage.removeItem("firstName")
-    localStorage.removeItem("lastName")
-    localStorage.removeItem("email")
-    localStorage.removeItem("password")
-    localStorage.removeItem("username")
-    window.location.reload()
+    localStorage.clear()
+    window.location=  "signin.html"
+
 })
-
-
 
 // ************  < Main >  ***********
 let cartNavIcon = document.querySelector('.cartNavIcon');
@@ -70,11 +61,11 @@ cartNavIcon.addEventListener('click', () => {
         if (cartMenu.style.display === 'block') {
             cartMenu.style.display = 'none';
         } else {
+            profileNameMenu.style.display = "none"
             cartMenu.style.display = 'block';
         }
     }
 });
-
 
 // ************* Draw cards ****************
 let allMainProducts = localStorage.getItem("allProducts");
@@ -326,8 +317,6 @@ function addToCart (id) {
             let cardProductQuantityValue = document.querySelector(`.cardProductQuantityValue_${product.id}`)
             let addToCartBtn = document.querySelector(`.addToCartBtn_${product.id}`);
 
-          
-
             addToCartBtn.style.display = 'none';
             cardProductQuantityValue.innerHTML =  1
             cardProductQuantityBox.style.display = "flex";
@@ -423,6 +412,7 @@ function quantityIncrement(id) {
       cardProductQuantityValue.innerHTML = cartProducts[index].cartQuantity
       drawCartItems(); 
     }
+
 }
 
 function quantityDecrement(id) {

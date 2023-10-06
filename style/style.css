@@ -153,6 +153,7 @@ header {
     left: 50%;
     transform: translate(-50% , 0%);
     display: flex;
+    justify-content: space-around;
     column-gap: 5px;
 
 }
@@ -165,6 +166,11 @@ header {
     display: none;
     position: relative;
     cursor: pointer;
+}
+@media (max-width: 992px) {
+    #profileNameBox {
+        position: static;
+    }
 }
 #userImg {
     width: 30px;

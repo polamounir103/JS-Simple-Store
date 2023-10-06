@@ -69,7 +69,7 @@ scrollContainer.addEventListener('mouseup', () => {
 scrollContainer.addEventListener('mousemove', (e) => {
   if (isDown === false) return;
   const x = e.pageX - scrollContainer.offsetLeft;
-  const walk = (x - startX) * 5; // Adjust the speed of scrolling
+  const walk = (x - startX) * 5; 
   scrollContainer.scrollLeft = scrollLeft - walk;
 });
 
@@ -81,24 +81,25 @@ if (allMainProducts) {
 // console.log(allMainProducts)
 
 
-let cartContainer = document.querySelector('.cartContainer')
-let allCartProducts = localStorage.getItem('cart')
-
-if (allCartProducts){
-  allCartProducts = JSON.parse(allCartProducts)
-}else {
-  allCartProducts=[]
-}
-function updateProductPice () {
-  allCartProducts.forEach((product) => {
+function updateProductPice (array) {
+  array.forEach((product) => {
     if (product.discount === true){
-      product.cartPrice = product.price - product.discountAmount  
+      let netPrice = product.price - product.discountAmount  
+      product.cartPrice = netPrice * product.cartQuantity
   }else {
     product.cartPrice = product.price
   }
   });
 }
-updateProductPice ()
+let cartContainer = document.querySelector('.cartContainer')
+let allCartProducts = localStorage.getItem('cart')
+
+if (allCartProducts){
+  allCartProducts = JSON.parse(allCartProducts)
+  updateProductPice (allCartProducts)
+}else {
+  allCartProducts=[]
+}
 // console.log(allCartProducts)
 
 let totalPrice = document.querySelector('.totalPrice span')
